@@ -1,0 +1,72 @@
+{
+ "coder": "coderA",
+ "model": "claude-sonnet-5",
+ "model_returned": [
+  "claude-sonnet-5"
+ ],
+ "thinking": "disabled",
+ "max_tokens": 3000,
+ "batch_size": 25,
+ "n_pass1_batches": 77,
+ "n_retry_batches": 2,
+ "n_requests": 79,
+ "total_input_tokens_incl_cache": 1454339,
+ "total_output_tokens": 35892,
+ "total_tokens": 1490231,
+ "status_counts": {
+  "ok": 1902,
+  "invalid": 2
+ },
+ "pass1": {
+  "ok": 1876,
+  "invalid": 25,
+  "missing": 3
+ },
+ "retry_cids": [
+  "T0282",
+  "T0374",
+  "T0391",
+  "T0399",
+  "T0859",
+  "T0913",
+  "T0935",
+  "T0971",
+  "T1135",
+  "T1168",
+  "T1286",
+  "T1298",
+  "T1322",
+  "T1437",
+  "T1439",
+  "T1447",
+  "T1449",
+  "T1460",
+  "T1489",
+  "T1492",
+  "T1513",
+  "T1521",
+  "T1607",
+  "T1608",
+  "T1616",
+  "T1621",
+  "T1755",
+  "T1898"
+ ],
+ "non_ok_cids": [
+  "T1449",
+  "T1460"
+ ],
+ "safety_filtered": 0,
+ "api_errors": 0,
+ "wall_time_s": 139.9,
+ "validation_rules": "CONCEPTUAL in Y/N; DOMAIN in allowed set; CODE in codebook codes|NEW|NONE; N<->NONE; code prefix matches domain; NEW requires label <=8 words; CONF 1-3",
+ "summary": {
+  "conceptual_Y": 535,
+  "NEW": 19
+ },
+ "non_ok_detail": {
+  "T1449": "pass1 invalid line 'T1449|N|CAC|CAC-4|-|2' (N with a code); omitted from retry response",
+  "T1460": "pass1 invalid line 'T1460|N|NET|NET-7|-|2' (N with a code); omitted from retry response"
+ },
+ "status_note": "Status 'invalid' = last returned line failed validation; no thread was safety-filtered."
+}

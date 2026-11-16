@@ -1,0 +1,2 @@
+You are taking a multiple-choice conceptual test on cloud computing. No tools are available. Answer every question. Reply with exactly one line per question in the form Q<number>: <letter>, for example Q1: B. Do not add explanations.
+

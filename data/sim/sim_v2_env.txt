@@ -1,0 +1,17 @@
+python 3.11.16 (3.11.16, Windows-10-10.0.26300-SP0)
+numpy 2.4.6
+scipy 1.17.1
+statsmodels 0.15.0
+girth 0.8.0
+pandas 2.3.3
+matplotlib 3.11.1
+
+2PL calibration: girth.twopl_mml (marginal maximum likelihood, N(0,1) latent density,
+  41 quadrature nodes on [-4.5, 4.5], lookup-table integration (girth defaults),
+  max_iteration=100 (girth default 25), stop when max|delta a| < 1e-3,
+  discrimination bounded to [0.2, 5.0] by girth's fminbound).
+DIF logistic regressions: statsmodels.discrete.discrete_model.Logit, method='newton', maxiter=100.
+Multiplicity: statsmodels.stats.multitest.multipletests ('fdr_bh' across items, 'holm' across pairs).
+R / mirt were NOT used.
+Base seed 20261111; replication seed = SeedSequence([base, condition code, N, rep]).
+Host: 20 logical CPUs; workers pinned to 1 BLAS thread.

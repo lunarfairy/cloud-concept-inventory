@@ -1,0 +1,46 @@
+model,variant,rule,description,negative_cases,violations,positive_changes
+authorisation,IAM-1,R2,Allow beats deny: an explicit Deny is ignored when some Allow also applies.,36177,0,1833
+authorisation,IAM-2,R6,Default allow: whatever is not explicitly denied is allowed (every implicit deny becomes allow).,15845,0,24155
+authorisation,IAM-2org,R5,Same organisation counts as same account: the one-side rule is applied to cross-account requests inside one organisation.,33351,0,1305
+authorisation,IAM-3,R5,One side suffices everywhere: the same-account rule is applied to every cross-account request.,26607,0,2618
+authorisation,IAM-3i,R5,"Identity side always required: a resource-policy grant alone never suffices, even within one account.",35744,0,2067
+authorisation,IAM-3r,R5,"Resource side always required: an identity grant alone never suffices, even within one account.",35062,0,3158
+authorisation,IAM-4c,R1,Role inherits its creator: the creator's identity policies are counted as the role's identity grants.,35939,0,864
+authorisation,IAM-5,R1,Container and object identifiers are interchangeable when matching resources.,36909,0,606
+authorisation,IAM-5w,R1,"A wildcard * is believed not to cross ""/"" separators.",27831,0,2556
+authorisation,IAM-5x,R1,Identity policies cannot name resources owned by another account (such statements are ignored).,34669,0,330
+authorisation,IAM-6a,"R3,R4",Guardrails grant: an Allow in a guardrail or boundary is counted as an identity grant (caps still apply).,31971,0,2861
+authorisation,IAM-6b,"R3,R4",Guardrails do not cap: guardrails and boundaries are ignored as limits.,30459,0,2395
+authorisation,IAM-6c,R4,"Boundary defines permissions: when a boundary exists, the identity grant is whatever the boundary allows.",35619,0,1617
+authorisation,IAM-7o,R2,"First match decides: among identity statements, the first applicable one in attachment order decides; later identity Denies are ignored.",39015,0,423
+reachability,NET-1,,Internet reachability without a gateway route (route check skipped),42572,0,502
+reachability,NET-1n,,A public address suffices for egress without any route,46433,0,559
+reachability,NET-1x,,Egress through the internet gateway without a public address,45844,0,379
+reachability,NET-1p,,Egress through NAT believed to need a public address,41994,0,143
+reachability,NET-2,,NAT believed to forward unsolicited inbound connections (only address/route checks replaced),45315,0,57
+reachability,NET-2p,,NAT subnet believed not to need an internet route,46637,0,226
+reachability,NET-3a,,Stateless ACL treated as stateful (return-path checks skipped),31358,0,1142
+reachability,NET-3s,,Stateful host firewall treated as stateless (reply rule required),34297,0,638
+reachability,NET-4,,TCP reachability judged by a ping,47519,0,481
+reachability,NET-5d,,Any matching deny wins in an ordered ACL,46835,0,68
+reachability,NET-5s,,Most specific prefix wins in an ordered ACL,47422,0,40
+reachability,NET-5r,,Highest-numbered rule evaluated first,45896,0,129
+reachability,NET-6,,Peering believed transitive,44973,0,3027
+name resolution,NET-7p,,Peering believed to share private DNS zones,18660,0,1340
+name resolution,NET-7g,,Private DNS zones believed to answer every client,5064,0,14936
+name resolution,NET-7x,,Only public DNS records believed to resolve,14936,0,5064
+misc,CAC-1,,Cached copies believed to track origin changes at once,3785,0,215
+misc,CAC-1n,,Cached copies believed never to expire (only invalidation refreshes),2767,0,793
+misc,CAC-2,,Query string always part of the cache key,2859,0,690
+misc,CAC-4,,"Shared caches believed to use max-age, ignoring s-maxage",1309,0,368
+misc,CAC-3,,Replica reads believed synchronous,3282,0,718
+misc,LB-1t,,A single failed check flips health state,274,0,3536
+misc,LB-1b,,"""Loads in a browser"" believed to mean healthy",2747,0,1102
+misc,ELA-2m,,Scaling believed to ignore the maximum size,2735,0,1265
+misc,ELA-2a,,Scaling believed to add one instance per breach,1778,0,2222
+misc,ELA-2v,,"Scaling believed to resize instances, not add them",800,0,3200
+misc,LB-4,,Stickiness believed to preserve sessions on scale-in,3000,0,1000
+misc,CST-1,,Stopped or idle resources believed free,746,0,3254
+misc,CST-2,,Gateway processing and egress believed free,989,0,3011
+misc,SHR-1,,Provider believed to secure customer layers,1969,0,2031
+misc,SHR-2,,Customer believed to manage every software layer,3024,0,976

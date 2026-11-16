@@ -23,7 +23,7 @@ cp = lambda k, n, a=0.05: (beta.ppf(a / 2, k, n - k + 1) if k > 0 else 0.0, beta
 fig, ax = plt.subplots(figsize=(7.0, 3.4)); ax.set_xlim(0, 100); ax.set_ylim(0, 48); ax.axis('off')
 def box(x, y, w, h, title, body, fc):
     ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.4,rounding_size=1.2", fc=fc, ec='0.3', lw=0.7))
-    ax.text(x + 1, y + h - 1.6, title, fontsize=7, weight='bold', va='top'); ax.text(x + 1, y + h - 5.6, body, fontsize=6, va='top', linespacing=1.25)
+    ax.text(x + 1, y + h - 1.6, title, fontsize=6.5, weight='bold', va='top'); ax.text(x + 1, y + h - 5.6, body, fontsize=6, va='top', linespacing=1.25)
 box(1, 27, 30, 19, "1  Machine-coded corpus", f"{NUM['NQall']} Q&A questions from three\nStack Exchange sites; {NUM['NQacc']}\naccepted-answer threads coded by\ntwo LLMs and a blinded adjudicator;\nfull-text audit of {NUM['AuditN']} threads", '#deebf7')
 box(35, 27, 30, 19, "2  Reference & buggy models", f"Authorisation, reachability, DNS,\nhealth checks, scaling, caching,\nreplication, cost, responsibility;\n{NUM['NBugsFour']} single-rule buggy variants\n({NUM['NVarUsedTested']} isolation-tested); {NUM['NConformance']} conformance\ncases", '#e5f5e0')
 box(69, 27, 30, 19, "3  Oracle-backed items", f"Key = reference-model output;\ndistractors = buggy-model outputs;\nassumption contract per item;\neach item has a twin that keys\nanother option ({NUM['NItemsFour']} items)", '#fee6ce')

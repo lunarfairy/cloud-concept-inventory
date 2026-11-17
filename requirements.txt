@@ -1,4 +1,4 @@
-# Python 3.11 (tested with 3.11.16, Windows 11 x64). Versions are those used for the reported results.
+# Python 3.11; versions used for the reported results.
 numpy==2.4.6
 pandas==2.3.3
 scipy==1.17.1
@@ -6,6 +6,3 @@ statsmodels==0.15.0
 girth==0.8.0
 matplotlib==3.11.1
 pytest==9.1.1
-# Optional, only for scripts/local_score_r4.py (local open-weight respondents):
-# torch==2.14.1
-# transformers==5.22.1

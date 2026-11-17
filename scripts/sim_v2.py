@@ -1,34 +1,8 @@
-"""
-sim_v2.py -- Psychometric design simulation (version 2) for a multi-site
-Cloud Concept Inventory calibration.
+"""Multi-site 2PL calibration and DIF design simulation.
 
-Replaces phase2_sim_mod.py (round 1). Changes, each answering a verified review point:
-  (1) Software is reported as it is: 2PL calibration uses the Python package
-      girth (twopl_mml, marginal maximum likelihood), NOT R mirt; logistic
-      regressions use statsmodels Logit (Newton-Raphson). Versions -> sim_v2_env.txt.
-  (2) Difficulties are drawn from a truncated normal, scipy.stats.truncnorm on
-      [-2.5, 2.5] (mean 0, SD 1 before truncation), not np.clip(normal).
-  (3) DIF is screened across the THREE sites (two site dummies + two
-      score x site interactions, 4-df omnibus LR test), not a pooled binary
-      "reference vs both other sites" contrast. The pooled binary analysis of
-      round 1 is kept only as `orig` for condition S1 (and as a comparison in M).
-  (4) Empirical FDR (V / max(R, 1), averaged over replications) is recorded
-      alongside per-null-item FPR. A two-stage purification of the matching
-      score and an oracle (true-anchor) analysis are included as diagnostics.
-  (5) Every logistic fit's convergence status is recorded (no silent p = 1,
-      no global warning suppression). Failed tests get p = NaN, are excluded
-      from the BH family and cannot be flagged; their count is reported.
-  (6) A shift of +d in b_j at a site is a shift of -a_j * d in that site's
-      conditional log-odds given theta (2PL logit = a_j (theta - b_j)).
-  (7) Effect-size rule on the logit scale: an item is retained as DIF only if
-      it is BH-significant AND the largest pairwise site difference in its
-      estimated conditional log-odds intercept at the pooled mean matching score
-      is >= 0.4 logit (0.3 also reported). 0.426 logit = 1.0 ETS delta unit,
-      the boundary between ETS category A (negligible) and B (MH D-DIF =
-      -2.35 ln alpha_MH); 0.4 is that boundary rounded down.
-
-Everything a replication needs is in `run_rep(cond, N, rep)`; seeds are derived
-deterministically from (BASE_SEED, condition code, N, rep) via numpy SeedSequence.
+Compares one-stage, purified and oracle-anchor screens with BH adjustment and
+pairwise log-odds thresholds. Failed fits are recorded and excluded from BH.
+Run one deterministic replication with run_rep(condition, students_per_site, rep).
 """
 import time
 import warnings

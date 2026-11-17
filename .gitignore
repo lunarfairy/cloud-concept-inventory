@@ -3,3 +3,8 @@ __pycache__/
 .pytest_cache/
 build/
 .DS_Store
+/data/
+/scripts/parts/
+/scripts/sim_v2_*.csv
+/scripts/sim_v2_env.txt
+/scripts/fig_sim_v2.*

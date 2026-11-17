@@ -1,15 +1,9 @@
-"""
-sim_driver.py -- runs the full sim_v2 grid and produces all outputs with one command:
+"""Run, resume and summarise the DIF simulation grid.
 
-    python sim_driver.py                 # run (resumes if parts exist), merge, summarise, figure, env
-    python sim_driver.py --workers 16    # number of independent worker processes (default 16)
-    python sim_driver.py --summary-only  # skip simulation; rebuild CSVs/figure from parts/
+python scripts/sim_driver.py --workers 16
+python scripts/sim_driver.py --summary-only
 
-Workers are independent subprocess.Popen processes (multiprocessing.Pool is not usable on the
-host used here); each runs `python sim_driver.py --worker k K` and appends one JSON line per
-replication to parts/part_k.jsonl. BLAS threads are pinned to 1 per worker.
-
-Outputs: sim_v2_reps.csv, sim_v2_summary.csv, sim_v2_env.txt, fig_sim_v2.png, fig_sim_v2.pdf.
+Workers use one BLAS thread each. Outputs are saved beside this script.
 """
 import argparse
 import glob
@@ -170,7 +164,6 @@ def write_env():
               f"DIF logistic regressions: statsmodels.discrete.discrete_model.Logit, method='newton', "
               f"maxiter={S.LOGIT_MAXITER}.",
               "Multiplicity: statsmodels.stats.multitest.multipletests ('fdr_bh' across items, 'holm' across pairs).",
-              "R / mirt were NOT used.",
               f"Base seed {S.BASE_SEED}; replication seed = SeedSequence([base, condition code, N, rep]).",
               f"Host: {os.cpu_count()} logical CPUs; workers pinned to 1 BLAS thread."]
     with open(os.path.join(HERE, "sim_v2_env.txt"), "w") as fh:

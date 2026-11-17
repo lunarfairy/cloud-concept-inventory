@@ -23,6 +23,7 @@ for m, (neg, bad, pos) in r.items(): rows.append(dict(model='authorisation', var
 for mod, name in [(TN, 'reachability'), (TD, 'name resolution'), (TM, 'misc')]:
     r = mod.run(); r = r[0] if isinstance(r, tuple) else r
     for m, (neg, bad, pos) in r.items(): rows.append(dict(model=name, variant=m, rule='', description=DESC.get(m, ''), negative_cases=neg, violations=bad, positive_changes=pos))
+os.makedirs('data', exist_ok=True)
 with open('data/property_tests.csv', 'w', newline='', encoding='utf-8') as fh:
     w = csv.DictWriter(fh, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
 print(len(rows), 'variants;', sum(r['violations'] for r in rows), 'violations')

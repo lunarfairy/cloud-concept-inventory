@@ -73,7 +73,8 @@ def results():
     return list(T)
 
 if __name__ == '__main__':
-    import csv, sys
+    import csv, sys, os
+    os.makedirs('data', exist_ok=True)
     with open('data/conformance_tests.csv', 'w', newline='') as fh:
         w = csv.writer(fh); w.writerow(['test', 'source', 'passed']); w.writerows(T)
     bad = [x for x in T if not x[2]]
